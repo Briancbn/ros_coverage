@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Exporting env variables"
+
 export AFTER_SCRIPT='bash <(curl -s https://raw.githubusercontent.com/rarrais/ros_coverage/master/codacy.sh)'
 export BUILDER='catkin_make'
 export ADDITIONAL_DEBS='python-coverage curl jq gcovr'
