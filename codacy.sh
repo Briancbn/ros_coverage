@@ -3,14 +3,39 @@
 ## ENVIRONMENT ##
 env_definition()
 {
-  # WS="/root/target_ws"
-  WS="/home/rarrais/catkin_ws"
+  WS="/root/target_ws"
 
   PY_FAIL_UNDER_COV_THRESHOLD="true"
   PY_COV_THRESHOLD=80
   
   CPP_FAIL_UNDER_COV_THRESHOLD="true"
   CPP_COV_THRESHOLD=80
+
+  CODACY_REPORT="true"
+}
+
+## REPORTERS ##
+
+install_reporters()
+{
+  if [[ "$CODACY_REPORT" == "true" ]]; then
+    install_codacy_reporter
+  fi
+}
+
+python_report()
+{
+  if [[ "$CODACY_REPORT" == "true" ]]; then
+    python_codacy_report
+  fi
+}
+
+cpp_report()
+{
+  if [[ "$CODACY_REPORT" == "true" ]]; then
+    cpp_codacy_report
+  fi
+
 }
 
 ## CODACY ##
@@ -41,7 +66,7 @@ python_code_coverage()
     # Combine results to xml
     python -m coverage xml -o coverage_py.xml
     
-    python_codacy_report
+    python_report
 
     # Shows results and tests if below a given coverage threshold
     python -m coverage report -m --skip-empty --fail-under=$PY_COV_THRESHOLD
@@ -60,7 +85,7 @@ cpp_code_coverage()
     # Generate C++ coverage xml
     gcovr -r $WS --xml-pretty > coverage_cpp.xml
 
-    cpp_codacy_report
+    cpp_report
 
     # Shows results and tests if below a given coverage threshold
     gcovr -r $WS --fail-under-line=$CPP_COV_THRESHOLD
@@ -77,6 +102,6 @@ env_definition
 # Chang directory to WS, as to not trigger permission errors
 cd $WS
 
-install_codacy_reporter
+install_reporters
 python_code_coverage
 cpp_code_coverage
