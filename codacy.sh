@@ -7,9 +7,9 @@ curl -Ls -o codacy-coverage-reporter "$(curl -Ls https://api.github.com/repos/co
 chmod +x $ws/codacy-coverage-reporter
 
 # Combine .coverage files & Combine result to xml & Report Python coverage to Codacy
-python -m coverage combine `find $ws -type f -name .coverage` 
+(cd $ws && exec python -m coverage combine `find $ws -type f -name .coverage`)
 if [ $? -eq 0 ]; then
-  python -m coverage xml -o $ws/coverage_py.xml
+  (cd $ws && exec python -m coverage xml -o $ws/coverage_py.xml)
   ./codacy-coverage-reporter report --commit-uuid $TRAVIS_COMMIT -l Python -r $ws/coverage_py.xml
 fi
 
