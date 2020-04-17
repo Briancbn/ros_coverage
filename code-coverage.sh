@@ -47,18 +47,18 @@ code_coverage_analysis()
 code_coverage_threshold_check()
 {
   # Python code coverage threshold check
-  if [[ -f $WS/coverage_py.xml && "$PY_FAIL_UNDER_COV_THRESHOLD" == "true" ]]; then
+  if [[ -f $WS/coverage_py.xml ]]; then
     python -m coverage report -m --fail-under=$PY_COV_THRESHOLD
-    if [[ $? -eq 2 && "$CPP_FAIL_UNDER_COV_THRESHOLD" == "true" ]]; then
+    if [[ $? -eq 2 && "$PY_FAIL_UNDER_COV_THRESHOLD" == "true" ]]; then
       echo "Failed! Under Python Threshold criteria."
       exit 2
     fi
   fi
 
   # C++ code coverage threshold check
-  if [[ -f $WS/coverage_cpp.xml && "$CPP_FAIL_UNDER_COV_THRESHOLD" == "true" ]]; then
+  if [[ -f $WS/coverage_cpp.xml ]]; then
     gcovr -r $WS --fail-under-line=$CPP_COV_THRESHOLD
-    if [[ $? -eq 2 && "$PY_FAIL_UNDER_COV_THRESHOLD" == "true" ]]; then
+    if [[ $? -eq 2 && "$CPP_FAIL_UNDER_COV_THRESHOLD" == "true" ]]; then
       # Fails if below a given coverage threshold
       echo "Failed! Under C++ Threshold criteria."
       exit 2
