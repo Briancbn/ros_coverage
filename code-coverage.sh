@@ -2,8 +2,7 @@
 
 env_definition()
 {
-  # WS="/root/target_ws"
-  WS="/home/rarrais/catkin_ws"
+  WS="/root/target_ws"
 
   PY_FAIL_UNDER_COV_THRESHOLD="true"
   PY_COV_THRESHOLD=80
