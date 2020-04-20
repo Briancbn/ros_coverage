@@ -4,10 +4,10 @@ env_definition()
 {
   WS="/root/target_ws"
 
-  PY_FAIL_UNDER_COV_THRESHOLD="true"
+  PY_FAIL_UNDER_COV_THRESHOLD="false"
   PY_COV_THRESHOLD=80
   
-  CPP_FAIL_UNDER_COV_THRESHOLD="true"
+  CPP_FAIL_UNDER_COV_THRESHOLD="false"
   CPP_COV_THRESHOLD=80
 
   CODACY_REPORT="true"
