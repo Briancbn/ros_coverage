@@ -37,9 +37,9 @@ code_coverage_report()
       ./.codecov -f coverage_py.xml -cF python
     fi
     
-    # if [[ -f $WS/coverage_cpp.xml ]]; then
-    #   ./.codecov -f coverage_cpp.xml -cF cpp
-    # fi
+    if [[ -f $WS/coverage_cpp.xml ]]; then
+      ./.codecov -f coverage_cpp.xml -cF cpp
+    fi
   fi
 }
 
