@@ -9,9 +9,6 @@ env_definition()
   
   CPP_FAIL_UNDER_COV_THRESHOLD="false"
   CPP_COV_THRESHOLD=80
-
-  CODACY_REPORT="true"
-  CODECOV_REPORT="true"
 }
 
 code_coverage_report()
