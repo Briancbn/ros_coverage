@@ -2,7 +2,8 @@
 
 env_definition()
 {
-  WS="/root/target_ws"
+  # WS="/root/target_ws"
+  WS="/home/rarrais/catkin_ws"
 
   PY_FAIL_UNDER_COV_THRESHOLD="true"
   PY_COV_THRESHOLD=80
@@ -11,6 +12,7 @@ env_definition()
   CPP_COV_THRESHOLD=80
 
   CODACY_REPORT="true"
+  CODECOV_REPORT="true"
 }
 
 code_coverage_report()
@@ -25,6 +27,19 @@ code_coverage_report()
     
     if [[ -f $WS/coverage_cpp.xml ]]; then
       ./codacy-coverage-reporter report --commit-uuid $TRAVIS_COMMIT --language Cpp --force-language -r coverage_cpp.xml
+    fi
+  fi
+
+  if [[ "$CODECOV_REPORT" == "true" ]]; then
+    curl -s https://codecov.io/bash > .codecov
+    chmod +x .codecov
+
+    if [[ -f $WS/coverage_py.xml ]]; then
+      ./.codecov -f coverage_py.xml -cF python
+    fi
+    
+    if [[ -f $WS/coverage_cpp.xml ]]; then
+      ./.codecov -f coverage_cpp.xml -cF cpp
     fi
   fi
 }
