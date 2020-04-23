@@ -13,7 +13,7 @@ env_definition()
 
 code_coverage_report()
 {
-  if [[ "$CODACY_REPORT" == "true" ]]; then
+  if [[ "$CODACY" == "true" ]]; then
     curl -Ls -o codacy-coverage-reporter "$(curl -Ls https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r '.assets | map({name, browser_download_url} | select(.name | contains("codacy-coverage-reporter-linux"))) | .[0].browser_download_url')"
     chmod +x codacy-coverage-reporter
 
@@ -26,7 +26,7 @@ code_coverage_report()
     fi
   fi
 
-  if [[ "$CODECOV_REPORT" == "true" ]]; then
+  if [[ "$CODECOV" == "true" ]]; then
     curl -s https://codecov.io/bash > .codecov
     chmod +x .codecov
 
