@@ -1,5 +1,7 @@
 # ROS Coverage
 
+[![Build Status](https://travis-ci.com/rarrais/ros_coverage.svg?branch=master)](https://travis-ci.com/rarrais/ros_coverage) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/dce8bf91f0314ab0b4c38cfb1998b724)](https://www.codacy.com/manual/rarrais/ros_coverage?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rarrais/ros_coverage&amp;utm_campaign=Badge_Grade) [![codecov](https://codecov.io/gh/rarrais/ros_coverage/branch/master/graph/badge.svg)](https://codecov.io/gh/rarrais/ros_coverage)
+
 Code coverage for ROS ([Robot Operating System](https://www.ros.org/)), integrated with the [Industrial CI](https://github.com/ros-industrial/industrial_ci) configuration 📈
 
 ## Table of Contents
