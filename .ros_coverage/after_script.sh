@@ -14,13 +14,12 @@ env_definition()
 code_coverage_analysis()
 {
   # Python code coverage
-  python -m coverage combine `find . -type f -name .coverage`
-  if [ $? -eq 0 ]; then
+  if python -m coverage combine $(find . -type f -name .coverage); then
     python -m coverage xml -o coverage_py.xml
   fi
 
   # C++ code coverage
-  if [[ ! -z `find $WS -type f -name *.gcda` ]]; then
+  if [[ ! -z $(find $WS -type f -name '*.gcda') ]]; then
     gcovr -r $WS --xml-pretty > coverage_cpp.xml
   fi
 }
@@ -32,11 +31,11 @@ code_coverage_report()
     chmod +x codacy-coverage-reporter
 
     if [[ -f $WS/coverage_py.xml ]]; then
-      ./codacy-coverage-reporter report --commit-uuid $TRAVIS_COMMIT -l Python -r coverage_py.xml
+      ./codacy-coverage-reporter report --commit-uuid "$TRAVIS_COMMIT" -l Python -r coverage_py.xml
     fi
     
     if [[ -f $WS/coverage_cpp.xml ]]; then
-      ./codacy-coverage-reporter report --commit-uuid $TRAVIS_COMMIT --language Cpp --force-language -r coverage_cpp.xml
+      ./codacy-coverage-reporter report --commit-uuid "$TRAVIS_COMMIT" --language Cpp --force-language -r coverage_cpp.xml
     fi
   fi
 
@@ -78,7 +77,7 @@ code_coverage_threshold_check()
 env_definition
 
 # Chang directory to WS, as to not trigger permission errors
-cd $WS
+cd $WS || exit
 
 code_coverage_analysis
 code_coverage_report

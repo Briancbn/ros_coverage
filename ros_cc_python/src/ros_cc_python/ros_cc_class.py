@@ -35,6 +35,6 @@ class RosCCClass(object):
         Method for getting the name parameter
 
         Returns:
-            name (string)
+            name (string): name parameter
         """
         return self.name
