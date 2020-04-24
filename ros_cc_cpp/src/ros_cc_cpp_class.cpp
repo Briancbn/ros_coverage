@@ -4,10 +4,7 @@
 
 namespace ros_cc_cpp_library
 {
-    RosCCCppClass::RosCCCppClass(std::string i)
-    {
-        identifier = i;
-    }
+    RosCCCppClass::RosCCCppClass(std::string i): identifier(i) {}
 
     void RosCCCppClass::setName(std::string n)
     {
