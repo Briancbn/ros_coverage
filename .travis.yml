@@ -4,7 +4,7 @@ services:
 
 env:
   global:
-    - DOCKER_RUN_OPTS=`bash <(curl -s https://raw.githubusercontent.com/rarrais/ros_coverage/develop/ros_coverage.sh)`
+    - DOCKER_RUN_OPTS=`bash <(curl -s https://raw.githubusercontent.com/rarrais/ros_coverage/master/ros_coverage.sh)`
   matrix:
     - ROS_DISTRO="melodic"  CODACY="true"  CODECOV="true"
     - ROS_DISTRO="kinetic"
