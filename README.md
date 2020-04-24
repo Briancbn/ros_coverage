@@ -37,7 +37,7 @@ Code coverage can currently be provided by [Codecov](https://codecov.io/) and/or
 
 2. Activate CI for your GitHub repository on Travis CI (follow [Industrial CI instructions](https://github.com/ros-industrial/industrial_ci#for-travis-ci)).
 3. Activate code coverage for your repository on Codecov and/or Codacy.
-4. For Codacy, it is necessary to set up the code coverage feature. Copy the Repository Token to a Travis CI private Environment Variable (accessible on the repository's settings menu).
+4. For Codacy, it is necessary to set up the code coverage feature. Copy the Repository Token to a Travis CI private Environment Variable (accessible on the repository's settings menu) named ```CODACY_PROJECT_TOKEN```.
 5. Edit the Industrial CI [travis.yml](https://github.com/ros-industrial/industrial_ci/blob/legacy/doc/.travis.yml) file with an extra global variable, and select in the matrix which configuration will run which code coverage report provider. Note that a code coverage report provider can only be instantiated once, otherwise reports might be conflictive between different jobs. See the example bellow:
 
     ```yml
