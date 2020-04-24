@@ -7,17 +7,18 @@ from ros_cc_python.ros_cc_class import RosCCClass
 
 
 class TestRosCCClass(TestCase):
+
     """Test class for the ROS Code Coverage Class (Python)."""
 
     def test_instance_creation(self):
-        """Tests the creation of a class instance"""
+        """Tests the creation of a class instance."""
         test_identifier = "tIdentifier"
         test_instance = RosCCClass(test_identifier)
 
         self.assertEqual(test_identifier, test_instance.identifier)
 
     def test_set_name(self):
-        """Tests the name setting method"""
+        """Tests the name setting method."""
         test_instance = RosCCClass("tIdentifier")
 
         test_name = "tName"
@@ -26,7 +27,7 @@ class TestRosCCClass(TestCase):
         self.assertEqual(test_name, test_instance.name)
 
     def test_get_name(self):
-        """Tests the name getting method"""
+        """Tests the name getting method."""
         test_name = "tName"
 
         test_instance = RosCCClass("tIdentifier", test_name)

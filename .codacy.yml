@@ -2,7 +2,7 @@
 engines:
   coverage:
     exclude_paths:
-      - "test/**"
+      - "**/test*"
 exclude_paths:
   - "**/*__init__.py"
   - "**/*setup.py"

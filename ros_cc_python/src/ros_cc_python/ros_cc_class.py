@@ -6,6 +6,7 @@ This module demonstrates code coverage and code quality for ROS Python applicati
 """
 
 class RosCCClass(object):
+
     """Example of a Python Class for code coverage purposes."""
 
     def __init__(self, identifier, name='default'):
