@@ -11,6 +11,20 @@ env_definition()
   CPP_COV_THRESHOLD=80
 }
 
+code_coverage_analysis()
+{
+  # Python code coverage
+  python -m coverage combine `find . -type f -name .coverage`
+  if [ $? -eq 0 ]; then
+    python -m coverage xml -o coverage_py.xml
+  fi
+
+  # C++ code coverage
+  if [[ ! -z `find $WS -type f -name *.gcda` ]]; then
+    gcovr -r $WS --xml-pretty > coverage_cpp.xml
+  fi
+}
+
 code_coverage_report()
 {
   if [[ "$CODACY" == "true" ]]; then
@@ -37,20 +51,6 @@ code_coverage_report()
     if [[ -f $WS/coverage_cpp.xml ]]; then
       ./.codecov -f coverage_cpp.xml -cF cpp
     fi
-  fi
-}
-
-code_coverage_analysis()
-{
-  # Python code coverage
-  python -m coverage combine `find . -type f -name .coverage`
-  if [ $? -eq 0 ]; then
-    python -m coverage xml -o coverage_py.xml
-  fi
-
-  # C++ code coverage
-  if [[ ! -z `find $WS -type f -name *.gcda` ]]; then
-    gcovr -r $WS --xml-pretty > coverage_cpp.xml
   fi
 }
 
