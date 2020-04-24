@@ -1,0 +1,7 @@
+ignore:
+  - "**/__init__.py"
+  - "**/test_*.cpp"
+  - "**/test_*.py"
+
+fixes:
+  - "src/ros_coverage/::"

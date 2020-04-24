@@ -1,0 +1,14 @@
+language: generic
+services:
+  - docker
+
+env:
+  global:
+    - DOCKER_RUN_OPTS=`bash <(curl -s https://raw.githubusercontent.com/rarrais/ros_coverage/develop/ros_coverage.sh)`
+  matrix:
+    - ROS_DISTRO="melodic"  CODACY="true"  CODECOV="true"
+    - ROS_DISTRO="kinetic"
+install:
+  - git clone --quiet --depth 1 https://github.com/ros-industrial/industrial_ci.git .industrial_ci -b master
+script:
+  - .industrial_ci/travis.sh

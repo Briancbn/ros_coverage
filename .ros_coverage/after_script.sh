@@ -11,9 +11,23 @@ env_definition()
   CPP_COV_THRESHOLD=80
 }
 
+code_coverage_analysis()
+{
+  # Python code coverage
+  python -m coverage combine `find . -type f -name .coverage`
+  if [ $? -eq 0 ]; then
+    python -m coverage xml -o coverage_py.xml
+  fi
+
+  # C++ code coverage
+  if [[ ! -z `find $WS -type f -name *.gcda` ]]; then
+    gcovr -r $WS --xml-pretty > coverage_cpp.xml
+  fi
+}
+
 code_coverage_report()
 {
-  if [[ "$CODACY_REPORT" == "true" ]]; then
+  if [[ "$CODACY" == "true" ]]; then
     curl -Ls -o codacy-coverage-reporter "$(curl -Ls https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r '.assets | map({name, browser_download_url} | select(.name | contains("codacy-coverage-reporter-linux"))) | .[0].browser_download_url')"
     chmod +x codacy-coverage-reporter
 
@@ -26,7 +40,7 @@ code_coverage_report()
     fi
   fi
 
-  if [[ "$CODECOV_REPORT" == "true" ]]; then
+  if [[ "$CODECOV" == "true" ]]; then
     curl -s https://codecov.io/bash > .codecov
     chmod +x .codecov
 
@@ -37,20 +51,6 @@ code_coverage_report()
     if [[ -f $WS/coverage_cpp.xml ]]; then
       ./.codecov -f coverage_cpp.xml -cF cpp
     fi
-  fi
-}
-
-code_coverage_analysis()
-{
-  # Python code coverage
-  python -m coverage combine `find . -type f -name .coverage`
-  if [ $? -eq 0 ]; then
-    python -m coverage xml -o coverage_py.xml
-  fi
-
-  # C++ code coverage
-  if [[ ! -z `find $WS -type f -name *.gcda` ]]; then
-    gcovr -r $WS --xml-pretty > coverage_cpp.xml
   fi
 }
 
