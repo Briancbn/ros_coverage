@@ -1,0 +1,7 @@
+#ignore Python Compiled Code
+*.pyc
+
+.idea/
+.vscode/
+
+CATKIN_IGNORE
