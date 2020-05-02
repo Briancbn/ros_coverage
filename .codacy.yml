@@ -2,7 +2,7 @@
 engines:
   coverage:
     exclude_paths:
-      - ros_cc_python/test/test_ros_cc_class.py
+      - "**/ros_cc_python/test/test_ros_cc_class.py"
 exclude_paths:
   - "**/*__init__.py"
   - "**/*setup.py"
