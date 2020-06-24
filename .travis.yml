@@ -4,9 +4,11 @@ services:
 
 env:
   matrix:
-    - ROS_DISTRO="melodic"  CODE_COVERAGE=coveralls.io
-    - ROS_DISTRO="melodic"  CODE_COVERAGE=codecov.io
+    - ROS_DISTRO="melodic"  CODE_COVERAGE=codecov.io BUILDER=colcon
+    - ROS_DISTRO="melodic"  CODE_COVERAGE=codecov.io BUILDER=catkin_tools
+    - ROS_DISTRO="melodic"  CODE_COVERAGE=codecov.io BUILDER=catkin_make_isolated
+    - ROS_DISTRO="melodic"  CODE_COVERAGE=codecov.io BUILDER=catkin_make
 install:
-  - git clone --quiet --depth 1 https://github.com/Briancbn/industrial_ci.git .industrial_ci -b pr-coverage-rebased
+  - git clone --quiet --depth 1 https://github.com/Briancbn/industrial_ci.git .industrial_ci -b pr-coverage
 script:
   - .industrial_ci/travis.sh
