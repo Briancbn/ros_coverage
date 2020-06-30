@@ -9,10 +9,9 @@ jobs:
         env:
           - {ROS_DISTRO: melodic, ROS_REPO: main}
     env:
-      CODE_COVERAGE: true
+      CODE_COVERAGE: coveralls.io
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: 'Briancbn/industrial_ci@pr-coverage-rebased'
         env: ${{matrix.env}}
-      - uses: codecov/codecov-action@v1
