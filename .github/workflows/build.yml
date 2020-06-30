@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         env:
-          - {ROS_DISTRO: eloquent, ROS_REPO: main}
+          - {ROS_DISTRO: melodic, ROS_REPO: main}
     env:
       CODE_COVERAGE: true
     runs-on: ubuntu-latest
