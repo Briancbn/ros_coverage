@@ -7,6 +7,6 @@ env:
     - ROS_DISTRO="melodic"  CODE_COVERAGE=coveralls.io
     - ROS_DISTRO="melodic"  CODE_COVERAGE=codecov.io
 install:
-  - git clone --quiet --depth 1 https://github.com/Briancbn/industrial_ci.git .industrial_ci -b pr-coverage-rebased
+  - git clone --quiet --depth 1 https://github.com/Briancbn/industrial_ci.git .ci -b pr-coverage-rebased
 script:
-  - .industrial_ci/travis.sh
+  - .ci/travis.sh
