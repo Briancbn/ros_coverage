@@ -1,0 +1,32 @@
+image: docker:git
+services:
+  - docker:dind
+before_script:
+  - apk add --update bash coreutils tar curl
+  - apk add --update python3 py3-pip python3-dev
+  - git clone --quiet --depth 1 https://github.com/Briancbn/industrial_ci .industrial_ci -b pr-coverage-rebased
+cache:
+  key: ${CI_JOB_NAME}
+  paths: 
+    - .ccache/
+
+variables:
+  CCACHE_DIR: "${CI_PROJECT_DIR}/.ccache"
+
+melodic-codecov:
+  variables:
+    ROS_DISTRO: "melodic"
+    ROS_REPO: "main"
+    CODE_COVERAGE: "codecov.io"
+    CODECOV_TOKEN: "96835179-55d6-4f7c-a8fe-dcfb69bb8698"
+  script: 
+    - .industrial_ci/gitlab.sh
+
+melodic-coveralls:
+  variables:
+    ROS_DISTRO: "melodic"
+    ROS_REPO: "main"
+    CODE_COVERAGE: "coveralls.io"
+    CODECOV_TOKEN: "lYhLSqcAh0kiAyFySHYt2rqMFTSJDY7mt"
+  script: 
+    - .industrial_ci/gitlab.sh
